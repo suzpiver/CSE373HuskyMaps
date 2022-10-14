@@ -2,6 +2,7 @@ package autocomplete;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,12 +26,22 @@ public class BinarySearchAutocomplete implements Autocomplete {
     @Override
     public void addAll(Collection<? extends CharSequence> terms) {
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.terms.addAll(terms);
+        Collections.sort(this.terms,CharSequence::compare); //null tells it to sort based on natural ordering
     }
 
     @Override
     public List<CharSequence> allMatches(CharSequence prefix) {
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<CharSequence> result = new ArrayList<>();
+        if (prefix == null || prefix.length() == 0) {
+            return result;
+        }
+        int i = Collections.binarySearch(this.terms, prefix, CharSequence::compare);
+        CharSequence start = this.terms.get(i);
+        for (int j = i; j < terms.size(); j++) {
+            result.add(terms.get(j));
+        }
+        return result;
     }
 }
