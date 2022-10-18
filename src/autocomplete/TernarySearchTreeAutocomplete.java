@@ -21,10 +21,22 @@ public class TernarySearchTreeAutocomplete implements Autocomplete {
         overallRoot = null;
     }
 
+    private Node put(Node x, CharSequence key, int d) {
+        char c = key.charAt(d);
+        if (x == null) {
+            x = new Node(c);
+        }
+        if      (c < x.data)               x.left  = put(x.left,  key, d);
+        else if (c > x.data)               x.right = put(x.right, key, d);
+        else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, d+1);
+        return x;
+    }
     @Override
     public void addAll(Collection<? extends CharSequence> terms) {
-        // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+       for (CharSequence term : terms) {
+           Node x = put(overallRoot, term, 0);
+       }
+
     }
 
     @Override

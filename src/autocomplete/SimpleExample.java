@@ -17,13 +17,14 @@ public class SimpleExample {
 // Choose your Autocomplete implementation.
         //Autocomplete autocomplete = new TreeSetAutocomplete();
         //Autocomplete autocomplete = new SequentialSearchAutocomplete();
-        Autocomplete autocomplete = new BinarySearchAutocomplete();
+        //Autocomplete autocomplete = new BinarySearchAutocomplete();
+        Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
         autocomplete.addAll(terms);
 // Choose your prefix string.
-        CharSequence prefix = "do";
-        List<CharSequence> matches = autocomplete.allMatches(prefix);
-        for (CharSequence match : matches) {
-            System.out.println(match);
+        //CharSequence prefix = "do";
+        //List<CharSequence> matches = autocomplete.allMatches(prefix);
+        //for (CharSequence match : matches) {
+           // System.out.println(match);
         }
     }
-}
+//}
