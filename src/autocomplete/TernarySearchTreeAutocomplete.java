@@ -34,7 +34,7 @@ public class TernarySearchTreeAutocomplete implements Autocomplete {
     @Override
     public void addAll(Collection<? extends CharSequence> terms) {
        for (CharSequence term : terms) {
-           Node x = put(overallRoot, term, 0);
+           overallRoot=put(overallRoot, term, 0);
        }
 
     }
