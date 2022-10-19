@@ -13,6 +13,8 @@ public class SimpleExample {
         terms.add("dodgy");
         terms.add("pilot");
         terms.add("dog");
+        terms.add("alto");
+        terms.add("alone");
 
 // Choose your Autocomplete implementation.
         //Autocomplete autocomplete = new TreeSetAutocomplete();
@@ -21,10 +23,11 @@ public class SimpleExample {
         Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
         autocomplete.addAll(terms);
 // Choose your prefix string.
-        //CharSequence prefix = "do";
-        //List<CharSequence> matches = autocomplete.allMatches(prefix);
-        //for (CharSequence match : matches) {
-           // System.out.println(match);
+        CharSequence prefix = "do";
+        List<CharSequence> matches = autocomplete.allMatches(prefix);
+        for (CharSequence match : matches) {
+            System.out.println(match);
+        }
         }
     }
 //}

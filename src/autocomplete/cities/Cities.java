@@ -1,6 +1,7 @@
 package autocomplete.cities;
 
 import autocomplete.Autocomplete;
+import autocomplete.TernarySearchTreeAutocomplete;
 import autocomplete.TreeSetAutocomplete;
 
 import java.io.FileInputStream;
@@ -32,7 +33,10 @@ class Cities {
             Scanner line = new Scanner(input.nextLine()).useDelimiter("\t");
             cities.put(line.next(), line.nextInt());
         }
-        Autocomplete autocomplete = new TreeSetAutocomplete();
+        //Autocomplete autocomplete = new TreeSetAutocomplete();
+        //Autocomplete autocomplete = new SequentialSearchAutocomplete();
+        //Autocomplete autocomplete = new BinarySearchAutocomplete();
+        Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
         autocomplete.addAll(cities.keySet());
 
         Scanner stdin = new Scanner(System.in);
