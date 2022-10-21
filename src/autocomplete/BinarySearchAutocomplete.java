@@ -38,12 +38,15 @@ public class BinarySearchAutocomplete implements Autocomplete {
             return result;
         }
         int i = Collections.binarySearch(this.terms, prefix, CharSequence::compare);
+        if (i<0)        i = -(i+1);
         for (int j = i; j < terms.size(); j++) {
-            CharSequence temp = terms.get(j).subSequence(0,prefix.length());
-            if(prefix.equals(temp)) {
-                result.add(terms.get(j));
+            CharSequence temp = terms.get(j);
+            if(prefix.length() < temp.length()) {
+                temp = subSequence(0, prefix.length());
             }
-            else {
+            if (prefix.equals(temp)) {
+                result.add(terms.get(j));
+            } else {
                 break;
             }
         }

@@ -1,6 +1,7 @@
 package autocomplete.cities;
 
 import autocomplete.Autocomplete;
+import autocomplete.BinarySearchAutocomplete;
 import autocomplete.TernarySearchTreeAutocomplete;
 import autocomplete.TreeSetAutocomplete;
 
@@ -35,8 +36,8 @@ class Cities {
         }
         //Autocomplete autocomplete = new TreeSetAutocomplete();
         //Autocomplete autocomplete = new SequentialSearchAutocomplete();
-        //Autocomplete autocomplete = new BinarySearchAutocomplete();
-        Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
+        Autocomplete autocomplete = new BinarySearchAutocomplete();
+        //Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
         autocomplete.addAll(cities.keySet());
 
         Scanner stdin = new Scanner(System.in);
