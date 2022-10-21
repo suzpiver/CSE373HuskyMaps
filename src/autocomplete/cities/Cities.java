@@ -1,9 +1,6 @@
 package autocomplete.cities;
 
-import autocomplete.Autocomplete;
-import autocomplete.BinarySearchAutocomplete;
-import autocomplete.TernarySearchTreeAutocomplete;
-import autocomplete.TreeSetAutocomplete;
+import autocomplete.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -35,8 +32,8 @@ class Cities {
             cities.put(line.next(), line.nextInt());
         }
         //Autocomplete autocomplete = new TreeSetAutocomplete();
-        //Autocomplete autocomplete = new SequentialSearchAutocomplete();
-        Autocomplete autocomplete = new BinarySearchAutocomplete();
+        Autocomplete autocomplete = new SequentialSearchAutocomplete();
+        //Autocomplete autocomplete = new BinarySearchAutocomplete();
         //Autocomplete autocomplete = new TernarySearchTreeAutocomplete();
         autocomplete.addAll(cities.keySet());
 
