@@ -41,7 +41,7 @@ public class BinarySearchAutocomplete implements Autocomplete {
         if (i<0)        i = -(i+1);
         for (int j = i; j < terms.size(); j++) {
             CharSequence temp = terms.get(j);
-            if(prefix.length() < temp.length()) {
+            if(prefix.length() <= temp.length()) {
                 temp = temp.subSequence(0, prefix.length());
             }
             if (prefix.equals(temp)) {

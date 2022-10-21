@@ -37,7 +37,7 @@ public class SequentialSearchAutocomplete implements Autocomplete {
             return result;
         }
         for (CharSequence term : this.terms){
-            if (prefix.length() < term.length()) {
+            if (prefix.length() <= term.length()) {
                 CharSequence temp = term.subSequence(0, prefix.length());
 
                 if (prefix.equals(temp)) {
