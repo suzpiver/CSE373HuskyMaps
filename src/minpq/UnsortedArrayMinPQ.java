@@ -29,7 +29,7 @@ public class UnsortedArrayMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new IllegalArgumentException("Already contains " + item);
         }
         // TODO: Replace with your code
-        items.add(new PriorityNode(item, priority));
+        items.add(new PriorityNode<T>(item, priority));
     }
 
     @Override
