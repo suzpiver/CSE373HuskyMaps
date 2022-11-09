@@ -35,12 +35,7 @@ public class HeapMinPQ<T> implements ExtrinsicMinPQ<T> {
     @Override
     public boolean contains(T item) {
         // TODO: Replace with your code
-        for (PriorityNode<T> node : this.pq) {
-            if(node.item()==item){
-                return true;
-            }
-        }
-        return false;
+        return pq.contains(new PriorityNode<T>(item, 0));
     }
 
     @Override
@@ -67,7 +62,8 @@ public class HeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
         // TODO: Replace with your code
-        pq.poll().item();
+        //pq.poll().item();
+        pq.remove(new PriorityNode<T>(item, 0));
         pq.add(new PriorityNode<T>(item, priority));
     }
 
