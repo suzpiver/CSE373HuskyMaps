@@ -60,20 +60,25 @@ public abstract class ExtrinsicMinPQTests {
             String comment = toxic.get(toxicity);
             assertTrue(testing.contains(comment));
         }
+        System.out.println("test1");
         // Test 2: See if size() is working.
         assertEquals(reference.size(), testing.size());
+        System.out.println("test2");
         // Test 3: See if peek() is working.
         assertEquals(reference.peekMin(), testing.peekMin());
+        System.out.println("test3");
         // Test 4: Remove all comments from both the reference and test PQ, ensuring order matches.
         assertTrue(sameRemoveOrder(reference, testing));
+        System.out.println("test4");
         // Test 5: Make sure contains works after removing everything.
         for (double toxicity : toxic.keySet()) {
             String comment = toxic.get(toxicity);
             assertFalse(testing.contains(comment));
         }
+        System.out.println("test5");
         // Test 6: Make sure size works after removing everything.
         assertEquals(reference.size(), testing.size());
-
+        System.out.println("test6");
         // Test 7: Re-populate, change priorities around, test new remove order.
         addAllComments(reference, toxic);
         addAllComments(testing, toxic);

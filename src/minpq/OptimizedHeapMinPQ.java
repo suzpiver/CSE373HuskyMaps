@@ -33,7 +33,7 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         // TODO: Replace with your code
         this.items.add(new PriorityNode<>(item, priority));
-        if (items.size()>1) swim(items.size()-1);
+        if(items.size()>1) swim(items.size()-1);
         itemToIndex.put(item, item.hashCode());
     }
 
@@ -74,11 +74,16 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         // TODO: Replace with your code
         for (PriorityNode<T> node : items) {
             if (node.item() == item) {
-                node.setPriority(priority);
-                break;
+                if (priority != node.priority()) {
+                    node.setPriority(priority);
+                    items.remove(node);
+                    itemToIndex.remove(item); //remove from hashmap
+                    add(item, priority);
+                    break;
+                }
             }
-        }
 
+        }
     }
 
     @Override
@@ -90,22 +95,22 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
     /** Returns the index of the given index's parent node. */
     private static int parent(int index) {
-        return index / 2;
+        return (index-1) / 2;
     }
 
     /** Returns the index of the given index's left child. */
     private static int left(int index) {
-        return index * 2;
+        return index * 2 + 1;
     }
 
     /** Returns the index of the given index's right child. */
     private static int right(int index) {
-        return left(index) + 1;
+        return left(index) +1;
     }
 
     /** Returns true if and only if the index is accessible. */
     private boolean accessible(int index) {
-        return 1 <= index && index <= size();
+        return (0 <= index) && (index < size());
     }
 
     /** Returns the index with the lower priority, or 0 if neither is accessible. */
@@ -144,6 +149,7 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             swap(index, child);
             index = child;
             child = min(left(index), right(index));
+            if (child==0) break;
         }
     }
 }
