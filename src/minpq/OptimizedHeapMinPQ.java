@@ -32,13 +32,15 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new IllegalArgumentException("Already contains " + item);
         }
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.items.add(new PriorityNode<>(item, priority));
+        if (items.size()>1) swim(items.size()-1);
+        itemToIndex.put(item, item.hashCode());
     }
 
     @Override
     public boolean contains(T item) {
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        return itemToIndex.get(item) != null;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ is empty");
         }
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        return items.get(0).item();
     }
 
     @Override
@@ -56,7 +58,12 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ is empty");
         }
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        T min = peekMin();
+        itemToIndex.remove(min); //remove from hashmap
+        swap(0, size()-1);
+        items.remove(size()-1);
+        sink(0);
+        return min;
     }
 
     @Override
@@ -65,12 +72,78 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (PriorityNode<T> node : items) {
+            if (node.item() == item) {
+                node.setPriority(priority);
+                break;
+            }
+        }
+
     }
 
     @Override
     public int size() {
         // TODO: Replace with your code
-        throw new UnsupportedOperationException("Not implemented yet");
+        return items.size();
+    }
+
+
+    /** Returns the index of the given index's parent node. */
+    private static int parent(int index) {
+        return index / 2;
+    }
+
+    /** Returns the index of the given index's left child. */
+    private static int left(int index) {
+        return index * 2;
+    }
+
+    /** Returns the index of the given index's right child. */
+    private static int right(int index) {
+        return left(index) + 1;
+    }
+
+    /** Returns true if and only if the index is accessible. */
+    private boolean accessible(int index) {
+        return 1 <= index && index <= size();
+    }
+
+    /** Returns the index with the lower priority, or 0 if neither is accessible. */
+    private int min(int index1, int index2) {
+        if (!accessible(index1) && !accessible(index2)) {
+            return 0;
+        } else if (accessible(index1) && (!accessible(index2)
+                || items.get(index1).priority()<items.get(index2).priority())) {
+            return index1;
+        } else {
+            return index2;
+        }
+    }
+
+    /** Swap the nodes at the two indices. */
+    private void swap(int index1, int index2) {
+        PriorityNode<T> temp = items.get(index1);
+        items.set(index1, items.get(index2));
+        items.set(index2, temp);
+    }
+
+    /** Bubbles up the node currently at the given index. */
+    private void swim(int index) {
+        int parent = parent(index);
+        while (accessible(parent) && items.get(index).priority() < items.get(parent).priority()) {
+            swap(index, parent);
+            index = parent;
+            parent = parent(index);
+        }
+    }
+
+    /** Bubbles down the node currently at the given index. */
+    private void sink(int index) {
+        int child = min(left(index), right(index));
+        while (accessible(child) && items.get(index).priority() > items.get(child).priority()) {
+            swap(index, child);
+            index = child;
+            child = min(left(index), right(index));
+        }
     }
 }

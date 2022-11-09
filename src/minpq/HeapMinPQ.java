@@ -29,13 +29,13 @@ public class HeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new IllegalArgumentException("Already contains " + item);
         }
         // TODO: Replace with your code
-        pq.add(new PriorityNode<T>(item, priority));
+        pq.add(new PriorityNode<>(item, priority));
     }
 
     @Override
     public boolean contains(T item) {
         // TODO: Replace with your code
-        return pq.contains(new PriorityNode<T>(item, 0));
+        return pq.contains(new PriorityNode<>(item, 0));
     }
 
     @Override
@@ -63,8 +63,8 @@ public class HeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         // TODO: Replace with your code
         //pq.poll().item();
-        pq.remove(new PriorityNode<T>(item, 0));
-        pq.add(new PriorityNode<T>(item, priority));
+        pq.remove(new PriorityNode<>(item, 0));
+        pq.add(new PriorityNode<>(item, priority));
     }
 
     @Override

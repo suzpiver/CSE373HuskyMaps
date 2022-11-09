@@ -2,7 +2,7 @@ package minpq;
 
 public class SimpleExample {
     public static void main(String[] args) {
-        ExtrinsicMinPQ<String> pq = new HeapMinPQ<>();
+        ExtrinsicMinPQ<String> pq = new OptimizedHeapMinPQ<>();
         pq.add("1", 1.0);
         pq.add("2", 2.0);
         pq.add("3", 3.0);
