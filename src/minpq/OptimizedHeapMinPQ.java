@@ -72,17 +72,19 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
         // TODO: Replace with your code
+        int i=0;
         for (PriorityNode<T> node : items) {
             if (node.item() == item) {
                 if (priority != node.priority()) {
-                    node.setPriority(priority);
-                    items.remove(node);
                     itemToIndex.remove(item); //remove from hashmap
+                    swap(i,size()-1);
+                    items.remove(size()-1);
+                    sink(i);//because we swap with last element, it should always need to sink
                     add(item, priority);
                     break;
                 }
             }
-
+            i+=1;
         }
     }
 
