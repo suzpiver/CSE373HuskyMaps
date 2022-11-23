@@ -60,9 +60,9 @@ public class DoubleMapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ is empty");
         }
         double minPriority = priorityToItem.firstKey();
-        Set<T> itemsWithMinPriority = priorityToItem.get(minPriority);
+        Set<T> itemsWithMinPriority = priorityToItem.get(minPriority);//constant
         T item = firstOf(itemsWithMinPriority);
-        itemsWithMinPriority.remove(item);
+        itemsWithMinPriority.remove(item);//
         if (itemsWithMinPriority.isEmpty()) {
             priorityToItem.remove(minPriority);
         }

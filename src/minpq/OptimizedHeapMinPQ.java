@@ -32,9 +32,9 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new IllegalArgumentException("Already contains " + item);
         }
         // TODO: Replace with your code
-        this.items.add(new PriorityNode<>(item, priority));
-        if(items.size()>1) swim(items.size()-1);
-        itemToIndex.put(item, item.hashCode());
+        this.items.add(new PriorityNode<>(item, priority));//adding to list
+        if(items.size()>1) swim(items.size()-1);//swimming item up if needed
+        //itemToIndex.put(item, );//adding to hashmap
     }
 
     @Override
@@ -58,11 +58,11 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             throw new NoSuchElementException("PQ is empty");
         }
         // TODO: Replace with your code
-        T min = peekMin();
+        T min = peekMin();//constant
         itemToIndex.remove(min); //remove from hashmap
-        swap(0, size()-1);
-        items.remove(size()-1);
-        sink(0);
+        swap(0, size()-1);//constant
+        items.remove(size()-1);//constant to pull off last element
+        sink(0);//log(N)
         return min;
     }
 
@@ -77,8 +77,8 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
             if (node.item() == item) {
                 if (priority != node.priority()) {
                     itemToIndex.remove(item); //remove from hashmap
-                    swap(i,size()-1);
-                    items.remove(size()-1);
+                    swap(i,size()-1); //constant
+                    items.remove(size()-1);//constant, last element
                     sink(i);//because we swap with last element, it should always need to sink
                     add(item, priority);
                     break;
@@ -132,6 +132,7 @@ public class OptimizedHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         PriorityNode<T> temp = items.get(index1);
         items.set(index1, items.get(index2));
         items.set(index2, temp);
+        //itemToIndex.put(items.get(index1).item(), )
     }
 
     /** Bubbles up the node currently at the given index. */

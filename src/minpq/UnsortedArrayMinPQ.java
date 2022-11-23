@@ -89,10 +89,7 @@ public class UnsortedArrayMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         // TODO: Replace with your code
         for (int i = 0; i < this.items.size(); i++) {
-            if (items.get(i).item()==item)
-            {
-                items.get(i).setPriority(priority);
-            }
+            if (items.get(i).item()==item) items.get(i).setPriority(priority);
         }
     }
 

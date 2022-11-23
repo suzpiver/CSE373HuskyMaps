@@ -73,7 +73,13 @@ public class GenerativeSeamFinder implements SeamFinder {
             @Override
             public List<Edge<Node>> neighbors(Picture picture, EnergyFunction f) {
                 // TODO: Replace with your code
-                throw new UnsupportedOperationException("Not implemented yet");
+                List<Edge<Node>> result = new ArrayList<>(picture.height());
+                for (int j = 0; j < picture.height(); j += 1) {
+                    //create the edges from source, the far left column.
+                    result.add(new Edge<>(this, new Pixel(0,j), f.apply(picture, 0, j)));
+                }
+                return result;
+                //throw new UnsupportedOperationException("Not implemented yet");
             }
         };
         /**
@@ -83,7 +89,9 @@ public class GenerativeSeamFinder implements SeamFinder {
             @Override
             public List<Edge<Node>> neighbors(Picture picture, EnergyFunction f) {
                 // TODO: Replace with your code
-                throw new UnsupportedOperationException("Not implemented yet");
+                //sink has no neighbors
+                return List.of();
+                //throw new UnsupportedOperationException("Not implemented yet");
             }
         };
 
@@ -130,7 +138,17 @@ public class GenerativeSeamFinder implements SeamFinder {
             @Override
             public List<Edge<Node>> neighbors(Picture picture, EnergyFunction f) {
                 // TODO: Replace with your code
-                throw new UnsupportedOperationException("Not implemented yet");
+                List<Edge<Node>> result = new ArrayList<>(picture.height());
+                //compute 'right-up' edge
+                if(this.y-1 >= 0) result.add(new Edge<>(this, new Pixel(x+1,y-1), f.apply(picture,x+1,y-1)));
+
+                //compute 'right-middle' edge
+                result.add(new Edge<>(this, new Pixel(x+1,y), f.apply(picture,x+1,y)));
+
+                //compute 'right-down' edge
+                if(this.y+1 < picture.height()) result.add(new Edge<>(this, new Pixel(x+1,y+1), f.apply(picture,x+1,y+1)));
+                return result;
+                //throw new UnsupportedOperationException("Not implemented yet");
             }
 
             @Override

@@ -61,8 +61,6 @@ public class HeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         if (!contains(item)) {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
-        // TODO: Replace with your code
-        //pq.poll().item();
         pq.remove(new PriorityNode<>(item, 0));
         pq.add(new PriorityNode<>(item, priority));
     }
