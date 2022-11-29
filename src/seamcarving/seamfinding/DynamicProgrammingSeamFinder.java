@@ -52,7 +52,6 @@ public class DynamicProgrammingSeamFinder implements SeamFinder {
                 }
             }
         }
-        //backtrack through 2D array to find shortest path
         List<Double> columnvalues = new ArrayList();
         double minval = Double.POSITIVE_INFINITY;
         int minindex=0;
@@ -63,6 +62,7 @@ public class DynamicProgrammingSeamFinder implements SeamFinder {
                 minindex = row;
             }
         }
+        //backtrack through 2D array to find shortest path
         shortestPath.add(minindex); //first entry on the path with by the min of last column
         //double minval = Double.POSITIVE_INFINITY;
         int y=minindex;
